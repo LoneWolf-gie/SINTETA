@@ -1,0 +1,137 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  user
+  admin
+  superadmin
+
+  @@map("roles")
+}
+
+enum Gender {
+  male
+  female
+
+  @@map("genders")
+}
+
+enum Grade {
+  sd
+  smp
+  sma
+  advance
+
+  @@map("grades")
+}
+
+model User {
+  id                 Int      @id @default(autoincrement())
+  uuid               String   @unique @default(uuid())
+  username           String   @unique @db.VarChar(100)
+  email              String   @unique @db.VarChar(100)
+  password           String
+  resetPasswordToken String?  @map("reset_password_token")
+  verificationToken  String?  @map("verification_token")
+  role               Role
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+  profile            Profile?
+
+  @@map("users")
+}
+
+model Profile {
+  id               Int      @id @default(autoincrement())
+  uuid             String   @unique @default(uuid())
+  userId           Int      @unique @map("user_id")
+  name             String
+  placeDateOfBirth String?  @map("place_date_of_birth")
+  gender           Gender
+  address          String?
+  phone            String?
+  profilePicture   String?  @map("profile_picture")
+  description      String?
+  status           String?
+  location         String?
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("update_at")
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Course {
+  id            Int      @id @default(autoincrement())
+  uuid          String   @unique @default(uuid())
+  title         String   @unique
+  pictureCourse String?  @map("picture_course")
+  price         Int
+  discount      Int?
+  totalPrice    Int?     @map("total_price")
+  about         String?
+  description   String?  @db.Text
+  expired       String?
+  grade         Grade
+  tag           String?
+  createdAt     DateTime @default(now()) @map("crated_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@fulltext([title])
+  @@map("courses")
+}
+
+model CourseClass {
+  id          Int           @id @default(autoincrement())
+  uuid        String        @unique @default(uuid())
+  name        String
+  imageClass  String        @map("image_class")
+  grade       Grade
+  about       String?       @db.Text
+  description String?       @db.Text
+  achievement achievement[]
+
+  @@map("course_class")
+}
+
+model achievement {
+  id            Int         @id @default(autoincrement())
+  uuid          String      @unique @default(uuid())
+  name          String
+  icon          String
+  description   String      @db.Text
+  courseClassId Int         @map("course_class_id")
+  courseClass   CourseClass @relation(fields: [courseClassId], references: [id], onDelete: Cascade)
+
+  @@map("achievments")
+}
+
+model Tag {
+  id         Int      @id @default(autoincrement())
+  uuid       String   @unique @default(uuid())
+  name       String
+  createdAt  DateTime @default(now()) @map("crated_at")
+  updated_at DateTime @updatedAt
+
+  @@map("tags")
+}
+
+model Review {
+  id          Int      @id @default(autoincrement())
+  uuid        String   @unique @default(uuid())
+  name        String   @unique
+  picture     String
+  university  String
+  description String   @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt
+
+  @@map("reviews")
+}
