@@ -12,7 +12,7 @@ const checkCourse = async (req, res, next) => {
         if (!findCourse) {
             return res.status(404).json({error: "Course not found"})
         }
-        req.fileImage = findCourse.pictureCourse;
+        req.fileImage = findCourse.picture;
         next();
 
     } catch (error) {

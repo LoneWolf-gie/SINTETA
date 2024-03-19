@@ -5,19 +5,19 @@ const { tryCatch } = require("../../utils/tryCatch");
 module.exports = {
     addCourse: tryCatch(async (req, res) => {
 
-        const { title, price, discount, totalPrice, about, description, expired, grade, tags } = req.body;
+        const { name, price, discount, totalPrice, about, description, expired, grade, tags } = req.body;
 
         const data = await Course.create({
             data: {
-                title: title,
-                pictureCourse: req.fileName,
+                name: name,
+                picture: req.fileName,
                 price: Number(price),
                 discount: Number(discount) || 0,
                 totalPrice: Number(totalPrice) || (Number(price) - Number(discount)),
-                about: about,
-                description: description,
+                about: about || null,
+                description: description || null,
                 expired: expired || null,
-                grade: grade,
+                grade: grade || null,
                 tag: tags || null
             }
         })
@@ -33,7 +33,7 @@ module.exports = {
         try {
             const findCourse = await Course.findFirst({
                 where: {
-                    title: req.body.title
+                    name: req.body.name
                 }
             });
 

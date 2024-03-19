@@ -9,11 +9,18 @@ const unlinkImage = (req, res, next) => {
 
         const sourceUrl = path.join(__dirname, `../public/images/${imageName}`);
 
-        fs.unlink(sourceUrl, (err) => {
-            if (err) return res.status(404).json({ error: "Image not found" });
+        fs.stat(sourceUrl, function (err, stats) {
+
+            if (err) {
+                if (err) return res.status(404).json({ error: "Image not found in server" });
+            }
+
+            fs.unlink(sourceUrl, function (err) {
+                if (err) return res.status(404).json({ error: "Image not found in server" });
+                next()
+            });
         });
 
-        next()
     } catch (err) {
         next(err)
     }

@@ -8,8 +8,8 @@ module.exports = {
         
         const data = await Course.findMany({
             where: {
-                title: {
-                    contains: req.query.title,
+                name: {
+                    contains: req.query.name,
                     lte: 'insensitive'
                 }
             }

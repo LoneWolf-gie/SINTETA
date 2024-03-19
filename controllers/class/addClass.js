@@ -9,7 +9,7 @@ module.exports = {
         const data = await CourseClass.create({
             data: {
                 name,
-                imageClass: req.fileName,
+                picture: req.fileName,
                 grade,
                 about,
                 description

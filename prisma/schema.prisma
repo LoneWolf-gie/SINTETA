@@ -69,22 +69,22 @@ model Profile {
 }
 
 model Course {
-  id            Int      @id @default(autoincrement())
-  uuid          String   @unique @default(uuid())
-  title         String   @unique
-  pictureCourse String?  @map("picture_course")
-  price         Int
-  discount      Int?
-  totalPrice    Int?     @map("total_price")
-  about         String?
-  description   String?  @db.Text
-  expired       String?
-  grade         Grade
-  tag           String?
-  createdAt     DateTime @default(now()) @map("crated_at")
-  updatedAt     DateTime @updatedAt @map("updated_at")
+  id          Int      @id @default(autoincrement())
+  uuid        String   @unique @default(uuid())
+  name        String   @unique
+  picture     String?
+  price       Int
+  discount    Int?
+  totalPrice  Int?     @map("total_price")
+  about       String?
+  description String?  @db.Text
+  expired     String?
+  grade       Grade
+  tag         String?
+  createdAt   DateTime @default(now()) @map("crated_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
-  @@fulltext([title])
+  @@fulltext([name])
   @@map("courses")
 }
 
@@ -92,7 +92,7 @@ model CourseClass {
   id          Int           @id @default(autoincrement())
   uuid        String        @unique @default(uuid())
   name        String
-  imageClass  String        @map("image_class")
+  picture     String?
   grade       Grade
   about       String?       @db.Text
   description String?       @db.Text
@@ -105,33 +105,64 @@ model achievement {
   id            Int         @id @default(autoincrement())
   uuid          String      @unique @default(uuid())
   name          String
-  icon          String
-  description   String      @db.Text
+  picture       String?
+  description   String?     @db.Text
   courseClassId Int         @map("course_class_id")
+  createdAt     DateTime    @default(now()) @map("crated_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
   courseClass   CourseClass @relation(fields: [courseClassId], references: [id], onDelete: Cascade)
 
   @@map("achievments")
 }
 
 model Tag {
-  id         Int      @id @default(autoincrement())
-  uuid       String   @unique @default(uuid())
-  name       String
-  createdAt  DateTime @default(now()) @map("crated_at")
-  updated_at DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  uuid      String   @unique @default(uuid())
+  name      String
+  createdAt DateTime @default(now()) @map("crated_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("tags")
 }
 
-model Review {
+model BranchOffice {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
-  name        String   @unique
-  picture     String
-  university  String
-  description String   @db.Text
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt
+  name        String
+  picture     String?
+  about       String?
+  description String?
+  location    String?
+  contact     String?
+  createdAt   DateTime @default(now()) @map("crated_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
-  @@map("reviews")
+  @@fulltext([name])
+  @@map("branch_offices")
+}
+
+model Testimonial {
+  id             Int      @id @default(autoincrement())
+  uuid           String   @unique @default(uuid())
+  name           String   @unique
+  picture        String?
+  acceptedSchool String?  @map("accepted_school")
+  grade          Grade?
+  video          String?
+  description    String?  @db.Text
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@map("testimonials")
+}
+
+model Bulletin {
+  id          Int     @id @default(autoincrement())
+  uuid        String  @unique @default(uuid())
+  name        String
+  picture     String?
+  description String? @db.LongText
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }

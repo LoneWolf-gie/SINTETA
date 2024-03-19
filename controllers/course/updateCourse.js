@@ -5,12 +5,12 @@ const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
     updateCourse: tryCatch(async (req, res) => {
-        const { title, price, discount, totalPrice, about, description, expired, grade, tags } = req.body;
+        const { name, price, discount, totalPrice, about, description, expired, grade, tags } = req.body;
         const data = await Course.update({
             where: { uuid: req.params.uuid },
             data: {
-                title,
-                pictureCourse: req.fileName,
+                name,
+                picture: req.fileName,
                 price: Number(price),
                 discount: Number(discount) || 0,
                 totalPrice: (totalPrice) || Number(price - discount),

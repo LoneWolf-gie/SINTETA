@@ -1,5 +1,5 @@
 exports.exclude = (model, keys) => {
     return Object.fromEntries(
-        Object.entries(model).filter(([key]) => !keys.includes(key))
+        Object.entries(model).filter(([[key]]) => !keys.includes(key))
     )
 };

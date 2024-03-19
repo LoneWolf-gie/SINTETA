@@ -5,9 +5,13 @@ const prisma = new PrismaClient();
 module.exports = {
     User: prisma.user,
     Course: prisma.course,
-    Review: prisma.review,
+    Testimonial: prisma.testimonial,
     CourseClass: prisma.courseClass,
     Achievment: prisma.achievement,
+    Tag: prisma.tag,
+    Bulletin: prisma.bulletin,
+    BranchOffice: prisma.branchOffice,
+
     prisma: prisma,
     
 }

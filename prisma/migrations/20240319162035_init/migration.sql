@@ -43,8 +43,8 @@ CREATE TABLE `profiles` (
 CREATE TABLE `courses` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
-    `title` VARCHAR(191) NOT NULL,
-    `picture_course` VARCHAR(191) NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NULL,
     `price` INTEGER NOT NULL,
     `discount` INTEGER NULL,
     `total_price` INTEGER NULL,
@@ -57,8 +57,8 @@ CREATE TABLE `courses` (
     `updated_at` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `courses_uuid_key`(`uuid`),
-    UNIQUE INDEX `courses_title_key`(`title`),
-    FULLTEXT INDEX `courses_title_idx`(`title`),
+    UNIQUE INDEX `courses_name_key`(`name`),
+    FULLTEXT INDEX `courses_name_idx`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -67,7 +67,7 @@ CREATE TABLE `course_class` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `image_class` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NULL,
     `grade` ENUM('sd', 'smp', 'sma', 'advance') NOT NULL,
     `about` TEXT NULL,
     `description` TEXT NULL,
@@ -79,11 +79,15 @@ CREATE TABLE `course_class` (
 -- CreateTable
 CREATE TABLE `achievments` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `icon` VARCHAR(191) NOT NULL,
-    `description` TEXT NOT NULL,
+    `picture` VARCHAR(191) NULL,
+    `description` TEXT NULL,
     `course_class_id` INTEGER NOT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
 
+    UNIQUE INDEX `achievments_uuid_key`(`uuid`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -100,18 +104,52 @@ CREATE TABLE `tags` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `reviews` (
+CREATE TABLE `branch_offices` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `picture` VARCHAR(191) NOT NULL,
-    `university` VARCHAR(191) NOT NULL,
-    `description` TEXT NOT NULL,
-    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAt` DATETIME(3) NOT NULL,
+    `picture` VARCHAR(191) NULL,
+    `about` VARCHAR(191) NULL,
+    `description` VARCHAR(191) NULL,
+    `location` VARCHAR(191) NULL,
+    `contact` VARCHAR(191) NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `reviews_uuid_key`(`uuid`),
-    UNIQUE INDEX `reviews_name_key`(`name`),
+    UNIQUE INDEX `branch_offices_uuid_key`(`uuid`),
+    FULLTEXT INDEX `branch_offices_name_idx`(`name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `testimonials` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NULL,
+    `accepted_school` VARCHAR(191) NULL,
+    `grade` ENUM('sd', 'smp', 'sma', 'advance') NULL,
+    `video` VARCHAR(191) NULL,
+    `description` TEXT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `testimonials_uuid_key`(`uuid`),
+    UNIQUE INDEX `testimonials_name_key`(`name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Bulletin` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NULL,
+    `description` LONGTEXT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `Bulletin_uuid_key`(`uuid`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

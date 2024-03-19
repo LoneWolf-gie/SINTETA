@@ -19,8 +19,8 @@ function fakeCourse() {
     const price = faker.number.int({ min: 99000, max: 1000000 });
     const discount = faker.number.int({ min: 50000, max: 99000 });
     return {
-        title: faker.lorem.words(5),
-        pictureCourse: faker.image.url(),
+        name: faker.lorem.words(5),
+        picture: faker.image.url(),
         price: price,
         discount: discount,
         totalPrice: price - discount,

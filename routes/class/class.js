@@ -10,10 +10,12 @@ const { updateClass } = require('../../controllers/class/updateClass');
 const checkClass = require('../../middleware/checkClass');
 const { deleteClass } = require('../../controllers/class/deleteClass');
 const { getClass } = require('../../controllers/class/getClass');
+const { getClassById } = require('../../controllers/class/getClassById');
 const router = express.Router();
 
 router.post('/add-class', checkToken, authPage(['admin', 'superadmin']), validateRequest(classValidation), checkClassExist, uploadImage, addClass);
 router.get('/', getClass)
+router.get('/:uuid', getClassById)
 router.put('/update-class/:uuid', checkToken, authPage(['admin', 'superadmin']), validateRequest(classValidation), checkClass, uploadImage, unlinkImage, updateClass);
 router.delete('/delete-class/:uuid', checkToken, authPage(['admin', 'superadmin']), checkClass, unlinkImage, deleteClass);
 

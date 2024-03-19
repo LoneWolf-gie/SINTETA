@@ -9,7 +9,7 @@ const checkClass = async(req, res, next) => {
         })
 
         if(!data) throw new AppError("Not found", "Class not found", 404);
-        req.fileImage = data.imageClass;
+        req.fileImage = data.picture;
         next()
     } catch (error) {
         next(error)

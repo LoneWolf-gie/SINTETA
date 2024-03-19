@@ -1,23 +1,24 @@
-const { Review } = require("../../model");
+const { Testimonial } = require("../../model");
 const AppError = require("../../utils/error");
 const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
-    updateReview: tryCatch(async (req, res) => {
-        const { name, university, description } = req.body;
+    updateTestimonial: tryCatch(async (req, res) => {
+        const { name, acceptedSchool, description, video } = req.body;
 
-        const data = await Review.update({
+        const data = await Testimonial.update({
             where: {uuid: req.params.uuid},
             data: {
                 name,
                 picture: req.fileName,
-                university,
+                acceptedSchool,
+                video: video || null,
                 description,
             }
         })
 
         if(!data || data.length == 0) {
-            throw new AppError("Not found", "Review not found", 404)
+            throw new AppError("Not found", "Testimonial not found", 404)
         }
 
         return res.status(200).send("Update successfully");
