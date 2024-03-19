@@ -20,8 +20,8 @@ const router = express.Router();
 router.post('/add-course', checkToken, authPage(['admin', 'superadmin']), validateRequest(courseValidation), checkCourseExist, uploadImage, addCourse);
 router.get('/', getAllCourse)
 router.get('/:uuid', getCourseById)
-router.get('/search', searchCourse)
-router.get('/course/pagination', paginationCourse)
+router.post('/search', searchCourse)
+router.post('/pagination', paginationCourse)
 router.put('/update-course/:uuid', checkToken, authPage(['admin', 'superadmin']), validateRequest(courseValidation), checkCourse, uploadImage, unlinkImage, updateCourse)
 router.delete('/delete-course/:uuid', checkToken, authPage(['admin', 'superadmin']), checkCourse, unlinkImage, deleteCourse)
 

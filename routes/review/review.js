@@ -16,8 +16,8 @@ const router = express.Router();
 
 router.post('/create-review', checkToken, authPage(['admin', 'superadmin']), validateRequest(reviewValidation), checkReviewExist, uploadImage, addReview)
 router.get('/', getAllReview)
-router.get('/pagination', paginationReview)
-router.put('/update-review/:uuid', checkToken, authPage(['admin', 'superadmin']), validateRequest(reviewValidation), checkReview, unlinkImage, uploadImage, updateReview)
+router.post('/pagination', paginationReview)
+router.put('/update-review/:uuid', checkToken, authPage(['admin', 'superadmin']), validateRequest(reviewValidation), checkReview, uploadImage, unlinkImage, updateReview)
 router.delete('/delete-review/:uuid', checkToken, authPage(['admin', 'superadmin']), checkReview, unlinkImage, deleteReview)
 
 module.exports = router;
