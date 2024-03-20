@@ -10,6 +10,7 @@ const checkTestimonial = async(req, res, next) => {
 
         if(!data || data.length == 0) throw new AppError("Not found", "Testimonial not found", 404);
 
+        req.imageId = data.pictureId;
         req.fileImage = data.picture;
         next()
     } catch (error) {

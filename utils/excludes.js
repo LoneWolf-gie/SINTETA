@@ -1,5 +1,11 @@
-exports.exclude = (model, keys) => {
-    return Object.fromEntries(
-        Object.entries(model).filter(([[key]]) => !keys.includes(key))
-    )
-};
+function exclude(obj, fieldsToExclude) {
+    const result = { ...obj };
+
+    fieldsToExclude.forEach(field => {
+        delete result[field];
+    });
+
+    return result;
+}
+
+module.exports = exclude;

@@ -57,6 +57,7 @@ model Profile {
   gender           Gender
   address          String?
   phone            String?
+  pictureId        String?
   profilePicture   String?  @map("profile_picture")
   description      String?
   status           String?
@@ -72,6 +73,7 @@ model Course {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
   name        String   @unique
+  pictureId   String?
   picture     String?
   price       Int
   discount    Int?
@@ -92,6 +94,7 @@ model CourseClass {
   id          Int           @id @default(autoincrement())
   uuid        String        @unique @default(uuid())
   name        String
+  pictureId   String?
   picture     String?
   grade       Grade
   about       String?       @db.Text
@@ -105,6 +108,7 @@ model achievement {
   id            Int         @id @default(autoincrement())
   uuid          String      @unique @default(uuid())
   name          String
+  pictureId     String?
   picture       String?
   description   String?     @db.Text
   courseClassId Int         @map("course_class_id")
@@ -129,6 +133,7 @@ model BranchOffice {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
   name        String
+  pictureId   String?
   picture     String?
   about       String?
   description String?
@@ -145,6 +150,7 @@ model Testimonial {
   id             Int      @id @default(autoincrement())
   uuid           String   @unique @default(uuid())
   name           String   @unique
+  pictureId      String?
   picture        String?
   acceptedSchool String?  @map("accepted_school")
   grade          Grade?
@@ -157,12 +163,12 @@ model Testimonial {
 }
 
 model Bulletin {
-  id          Int     @id @default(autoincrement())
-  uuid        String  @unique @default(uuid())
+  id          Int      @id @default(autoincrement())
+  uuid        String   @unique @default(uuid())
   name        String
+  pictureId   String?
   picture     String?
-  description String? @db.LongText
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  description String?  @db.LongText
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 }

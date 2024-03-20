@@ -10,6 +10,7 @@ module.exports = {
         const data = await Course.create({
             data: {
                 name: name,
+                pictureId: req.fileId,
                 picture: req.fileName,
                 price: Number(price),
                 discount: Number(discount) || 0,

@@ -10,6 +10,7 @@ module.exports = {
             where: { uuid: req.params.uuid },
             data: {
                 name,
+                pictureId: req.fileId,
                 picture: req.fileName,
                 price: Number(price),
                 discount: Number(discount) || 0,

@@ -9,7 +9,7 @@ const checkAchievment = async (req, res, next) => {
         })
 
         if (!data || data.length == 0) return res.status(404).send("Achievment not found");
-
+        req.imageId = data.pictureId;
         req.fileImage = data.picture;
         next()
     } catch (error) {

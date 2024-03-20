@@ -8,6 +8,7 @@ module.exports = {
         const data = await Testimonial.create({
             data: {
                 name: name,
+                pictureId: req.fileId,
                 picture: req.fileName,
                 acceptedSchool: acceptedSchool,
                 video: video || null,
