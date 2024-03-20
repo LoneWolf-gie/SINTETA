@@ -21,7 +21,8 @@ const uploadImage = (req, res, next) => {
         }
 
 
-        const uploadDir = path.join(__dirname, '../public/images');
+        // const uploadDir = path.join(__dirname, '../public/images');
+        const uploadDir = "/tmp/images";
 
 
         if (!fs.existsSync(uploadDir)) {
@@ -34,8 +35,7 @@ const uploadImage = (req, res, next) => {
 
         image.mv(filePath, (error) => {
             if (error) {
-                // return res.status(500).json({ error: 'Error uploading image' });
-                console.log(error);
+                return res.status(500).json({ error: 'Error uploading image' });
             }
             const imageUrl = `${req.protocol}://${req.get('host')}/images/${fileName}`;
             req.fileName = imageUrl;

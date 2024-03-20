@@ -21,7 +21,8 @@ httpServer.use(cors())
 //     credentials: true // Izinkan mengirim cookie di antar domain
 // }));
 
-httpServer.use('/images', express.static('public/images'));
+// httpServer.use('/images', express.static('public/images'));
+httpServer.use('/images', express.static('tmp/images'));
 httpServer.use(fileUpload());
 
 httpServer.get("/", (req, res) => {
