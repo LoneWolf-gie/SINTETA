@@ -6,20 +6,9 @@ const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
     getBulletin: tryCatch(async (req, res) => {
-        const bulletin = await Bulletin.findMany();
+        const data = await Bulletin.findMany();
 
-        if (!bulletin || bulletin.length == 0) throw new AppError("Not found", "Bulletin not found", 404)
-
-        const data = bulletin.map(item => ({
-            id: item.id,
-            uuid: item.uuid,
-            name: item.name,
-            pictureId: null,
-            picture: item.picture,
-            description: item.description,
-            createdAt: item.createdAt,
-            updatedAt: item.updatedAt
-        }));
+        if (!data || data.length == 0) throw new AppError("Not found", "Bulletin not found", 404)
 
         return res.status(200).json({ data })
     })
