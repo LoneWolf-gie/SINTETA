@@ -34,7 +34,8 @@ const uploadImage = (req, res, next) => {
 
         image.mv(filePath, (error) => {
             if (error) {
-                return res.status(500).json({ error: 'Error uploading image' });
+                // return res.status(500).json({ error: 'Error uploading image' });
+                console.log(error);
             }
             const imageUrl = `${req.protocol}://${req.get('host')}/images/${fileName}`;
             req.fileName = imageUrl;
