@@ -7,7 +7,9 @@ const unlinkImage = (req, res, next) => {
         if (!imageUrl) return res.status(404).json({ error: 'Image not found' });
         const imageName = imageUrl.split('/').pop();
 
-        const sourceUrl = path.join(__dirname, `../public/images/${imageName}`);
+        // const sourceUrl = path.join(__dirname, `../public/images/${imageName}`);
+        const sourceUrl = "/tmp";
+
 
         fs.stat(sourceUrl, function (err, stats) {
 

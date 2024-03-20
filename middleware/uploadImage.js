@@ -22,7 +22,7 @@ const uploadImage = (req, res, next) => {
 
 
         // const uploadDir = path.join(__dirname, '../public/images');
-        const uploadDir = "/tmp/images";
+        const uploadDir = "/tmp";
 
 
         if (!fs.existsSync(uploadDir)) {
