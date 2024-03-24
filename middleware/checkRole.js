@@ -1,28 +1,28 @@
 const { User } = require("../model/index");
+const AppError = require("../utils/error");
 
 
 const authPage = (allowedRoles) => async (req, res, next) => {
     try {
-        const userId = res.user.id;
+        const userId = req.user.id;
         const user = await User.findUnique({
             where: { id: userId }
         });
 
         if (!user) {
-            return res.status(404).send("User not found")
+            throw new AppError("Not Found", "User not found", 404);
         }
 
         const userRole = user.role;
 
         if (!allowedRoles.includes(userRole)) {
-            return res.status(403).send("Access forbidden")
+            throw new AppError("Invalid Access", "Access forbidden", 403);
         }
+
         next();
     } catch (error) {
-        next(error)
+        next(error);
     }
-
-
 };
 
 module.exports = authPage;

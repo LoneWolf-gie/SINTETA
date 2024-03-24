@@ -4,7 +4,7 @@ const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
     updateTestimonial: tryCatch(async (req, res) => {
-        const { name, acceptedSchool, description, video } = req.body;
+        const { name, acceptedSchool, graduatedFrom, description, video } = req.body;
 
         const data = await Testimonial.update({
             where: {uuid: req.params.uuid},
@@ -12,7 +12,8 @@ module.exports = {
                 name,
                 pictureId: req.fileId,
                 picture: req.fileName,
-                acceptedSchool,
+                acceptedSchool: acceptedSchool,
+                graduatedFrom: graduatedFrom,
                 video: video || null,
                 description,
             }

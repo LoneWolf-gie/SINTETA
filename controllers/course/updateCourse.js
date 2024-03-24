@@ -17,7 +17,7 @@ module.exports = {
                 totalPrice: (totalPrice) || Number(price - discount),
                 about: about || null,
                 description: description || null,
-                expired: expired || null,
+                expired: new Date(expired) || null,
                 grade: grade || null,
                 tag: tags || null
             }

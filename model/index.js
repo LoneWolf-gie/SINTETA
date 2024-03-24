@@ -10,7 +10,7 @@ module.exports = {
     Achievment: prisma.achievement,
     Tag: prisma.tag,
     Bulletin: prisma.bulletin,
-    BranchOffice: prisma.branchOffice,
+    Office: prisma.office,
 
     prisma: prisma,
     

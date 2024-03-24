@@ -15,7 +15,7 @@ const { filterTestimonial } = require('../../controllers/testimonial/filterTesti
 
 const router = express.Router();
 
-router.post('/create-Testimonial', checkToken, authPage(['admin', 'superadmin']), validateRequest(testimonialValidation), checkTestimonialExist, uploadImage, addTestimonial)
+router.post('/add-Testimonial', checkToken, authPage(['admin', 'superadmin']), validateRequest(testimonialValidation), checkTestimonialExist, uploadImage, addTestimonial)
 router.get('/', getAllTestimonial)
 router.post('/filter', filterTestimonial)
 router.post('/pagination', paginationTestimonial)

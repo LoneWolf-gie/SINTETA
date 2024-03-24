@@ -65,6 +65,36 @@ CREATE TABLE `courses` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `programs` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `subName` VARCHAR(191) NOT NULL,
+    `about` VARCHAR(191) NOT NULL,
+    `description` TEXT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `programs_uuid_key`(`uuid`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `promos` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `about` VARCHAR(191) NOT NULL,
+    `description` TEXT NOT NULL,
+    `expired` DATETIME(3) NOT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `promos_uuid_key`(`uuid`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `course_class` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
@@ -108,7 +138,7 @@ CREATE TABLE `tags` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `branch_offices` (
+CREATE TABLE `offices` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
@@ -121,8 +151,8 @@ CREATE TABLE `branch_offices` (
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `branch_offices_uuid_key`(`uuid`),
-    FULLTEXT INDEX `branch_offices_name_idx`(`name`),
+    UNIQUE INDEX `offices_uuid_key`(`uuid`),
+    FULLTEXT INDEX `offices_name_idx`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -133,7 +163,8 @@ CREATE TABLE `testimonials` (
     `name` VARCHAR(191) NOT NULL,
     `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NULL,
-    `accepted_school` VARCHAR(191) NULL,
+    `accepted_school` VARCHAR(191) NOT NULL,
+    `graduated_from` VARCHAR(191) NOT NULL,
     `grade` ENUM('sd', 'smp', 'sma', 'advance') NULL,
     `video` VARCHAR(191) NULL,
     `description` TEXT NULL,
@@ -146,7 +177,37 @@ CREATE TABLE `testimonials` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Bulletin` (
+CREATE TABLE `alumnaes` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `accepted_school` VARCHAR(191) NOT NULL,
+    `description` TEXT NOT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `alumnaes_uuid_key`(`uuid`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `accepted_university` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `pictureId` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NOT NULL,
+    `graduatedFrom` VARCHAR(191) NOT NULL,
+    `acceptedSchool` VARCHAR(191) NOT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `accepted_university_uuid_key`(`uuid`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `bulletins` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
@@ -156,7 +217,38 @@ CREATE TABLE `Bulletin` (
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `Bulletin_uuid_key`(`uuid`),
+    UNIQUE INDEX `bulletins_uuid_key`(`uuid`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `facilities` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `pictureId` VARCHAR(191) NOT NULL,
+    `pictrue` VARCHAR(191) NOT NULL,
+    `about` VARCHAR(191) NOT NULL,
+    `description` TEXT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `facilities_uuid_key`(`uuid`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `banners` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `pictureId` VARCHAR(191) NOT NULL,
+    `pictrue` VARCHAR(191) NOT NULL,
+    `tag` ENUM('home', 'class', 'graduate', 'facility', 'promoStudy', 'aboutus') NOT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `banners_uuid_key`(`uuid`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

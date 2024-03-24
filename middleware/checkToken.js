@@ -1,29 +1,30 @@
 const jwt = require('jsonwebtoken');
-const { secret_key } = require('../config/config');
+const { access_token_secret } = require('../config/config');
+
 
 const checkToken = (req, res, next) => {
-    let token = req.headers.authorization;
-
-    if (!token) {
-        return res.status(401).json({
-            error: 'please provide a token'
-        })
-    }
-
-    if (token.toLowerCase().startsWith('bearer')) {
-        token = token.slice('bearer'.length).trim()
-    }
-
     try {
-        const jwtPayload = jwt.verify(token, secret_key);
-        res.user = jwtPayload;
+        const token = req.headers.authorization;
+
+        if (!token) {
+            return res.status(401).send('Access Denied. No token provided.');
+        }
+
+        const formattedToken = token.replace(/^bearer\s+/i, '');
+
+        const decoded = jwt.verify(formattedToken, access_token_secret);
+
+        if (!decoded) {
+            return res.status(401).send('Access Denied. Token does not match any.');
+        }
+
+        req.user = decoded;
         next();
     } catch (error) {
         return res.status(401).json({
             error: 'Unauthenticated'
         });
     }
+};
 
-}
-
-module.exports = checkToken
+module.exports = checkToken;
