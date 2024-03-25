@@ -5,16 +5,21 @@ const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
     searchCourse: tryCatch(async (req, res) => {
-        
+        const name = req.query.name;
         const data = await Course.findMany({
             where: {
-                name: {
-                    contains: req.query.name,
-                    lte: 'insensitive'
-                }
-            }
-        });
-
+              name: {
+                search: name,
+              },
+            },
+            orderBy: {
+              _relevance: {
+                fields: ["name"],
+                search: name,
+                sort: "desc",
+              },
+            },
+          })
         if (!data || data.length == 0) throw new AppError("Not found", "Course not found", 404)
 
 

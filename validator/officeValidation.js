@@ -1,6 +1,6 @@
 const joi = require('joi')
 
-exports.office = joi.object({
+exports.officeValidation = joi.object({
     name: joi.string().required(),
     about: joi.string().required(),
     description: joi.string(),

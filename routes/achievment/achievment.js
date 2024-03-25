@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.get('/', getAchievment)
 router.post('/add-achievment', checkToken, authPage(['admin', 'superadmin']), validateRequest(achievmentValidation), checkAchievmentExist, uploadImage, addAchievmentClass)
-router.put('/update-achievment', checkToken, authPage(['admin', 'superadmin']), validateRequest(achievmentValidation), checkAchievment, unlinkImage, uploadImage, updateAchievment)
+router.put('/update-achievment', checkToken, authPage(['admin', 'superadmin']), validateRequest(achievmentValidation), checkAchievment, uploadImage, unlinkImage, updateAchievment)
 router.delete('delete-achievment', checkToken, authPage(['admin', 'superadmin']), checkAchievment, unlinkImage, deleteAchievment)
 
 module.exports = router

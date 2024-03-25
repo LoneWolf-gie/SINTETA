@@ -1,9 +1,8 @@
-// const fs = require('fs');
+const fs = require('fs');
 const path = require('path');
-const imagekit = require('../utils/imagekit');
+const makeid = require('../utils/random');
 
-
-const uploadImage = async (req, res, next) => {
+const uploadImage = (req, res, next) => {
     try {
         if (!req.files || !req.files.image) {
             return res.status(400).json({ error: 'No image uploaded' });
@@ -13,8 +12,8 @@ const uploadImage = async (req, res, next) => {
         const allowedExtensions = ['.jpg', '.jpeg', '.png'];
         const fsize = image.size;
         const file = Math.round((fsize / 1024));
-        if (file >= 5120) {
-            return res.status(403).json({ error: 'Image size must less than equal 5mb' })
+        if(file >=  5120) {
+            return res.status(403).json({error: 'Image size must less than equal 5mb'})
         }
 
         const fileExtension = path.extname(image.name).toLowerCase();
@@ -22,38 +21,24 @@ const uploadImage = async (req, res, next) => {
             return res.status(400).json({ error: 'Invalid file format. Only JPG, JPEG, and PNG files are allowed' });
         }
 
-        const fileTostring = image.data.toString('base64');
 
-        const uploadFile = await imagekit.upload({
-            fileName: image.name,
-            file: fileTostring
-        });
+        const uploadDir = path.join(__dirname, '../public/images');
 
-        if (!uploadFile) return res.status(502).send("Failed to upload image")
-        
-        req.fileId = uploadFile.fileId
-        req.fileName = uploadFile.url;
-    
-        next();
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
 
+        const fileName = `${makeid(8)}${image.name}`;
+        const filePath = path.join(uploadDir, fileName);
 
-        // const uploadDir = path.join(__dirname, '../public/images');
-
-        // if (!fs.existsSync(uploadDir)) {
-        //     fs.mkdirSync(uploadDir, { recursive: true });
-        // }
-
-        // const fileName = `${Date.now()}${fileExtension}`;
-        // const filePath = path.join(uploadDir, fileName);
-
-        // image.mv(filePath, (error) => {
-        //     if (error) {
-        //         return res.status(500).json({ error: 'Error uploading image' });
-        //     }
-        //     const imageUrl = `${req.protocol}://${req.get('host')}/images/${fileName}`;
-        //     req.fileName = imageUrl;
-        //     next();
-        // })
+        image.mv(filePath, (error) => {
+            if (error) {
+                return res.status(500).json({ error: 'Error uploading image' });
+            }
+            const imageUrl = `${req.protocol}://${req.get('host')}/images/${fileName}`;
+            req.fileName = imageUrl;
+            next();
+        })
     }
     catch (error) {
         next(error)

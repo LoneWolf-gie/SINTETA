@@ -10,7 +10,6 @@ module.exports = {
             where: {uuid: req.params.uuid},
             data: {
                 name,
-                pictureId: req.fileId,
                 picture: req.fileName,
                 acceptedSchool: acceptedSchool,
                 graduatedFrom: graduatedFrom,

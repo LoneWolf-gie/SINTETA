@@ -10,7 +10,6 @@ module.exports = {
             data: {
                 name, 
                 picture: req.fileName,
-                pictureId: req.fileId,
                 description,
                 courseClassId: Number(courseClassId)
             }

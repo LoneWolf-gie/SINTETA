@@ -10,13 +10,12 @@ module.exports = {
             where: { uuid: req.params.uuid },
             data: {
                 name,
-                pictureId: req.fileId,
                 picture: req.fileName,
                 description: description
             }
         })
 
-        if(!data || data.length == 0) throw new AppError("Not found", "Bulletin not found", 404);
+        if(!data || data.length == 0) throw new AppError("Failed", "Unsuccessful Update", 400);
 
         return res.status(200).send("Update successfully");
     })

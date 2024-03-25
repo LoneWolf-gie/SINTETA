@@ -4,9 +4,9 @@ const AppError = require("../utils/error");
 
 const authPage = (allowedRoles) => async (req, res, next) => {
     try {
-        const userId = req.user.id;
+        const email = req.user.email;
         const user = await User.findUnique({
-            where: { id: userId }
+            where: { email: email }
         });
 
         if (!user) {

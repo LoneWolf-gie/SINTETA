@@ -5,5 +5,6 @@ exports.testimonialValidation = joi.object({
     acceptedSchool: joi.string().required(),
     description: joi.string().required(),
     grade: joi.string().valid('sd', 'smp', 'sma').required(),
+    graduatedFrom: joi.string().required(),
     video: joi.string()
 })

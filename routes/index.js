@@ -5,6 +5,9 @@ const testimonialRoutes = require('./testimonial/testimonial')
 const courseClassRoutes = require('./class/class')
 const achievmentRoutes = require('./achievment/achievment')
 const bulletinRoutes = require('./bulletin/bulletin')
+const officeRoutes = require('./office/office')
+const acceptedUniversity = require('./acceptedUniversity/accepted')
+const bannerRoutes = require('./banner/banner')
 
 const router = express.Router();
 
@@ -14,5 +17,8 @@ router.use("/testimonial", testimonialRoutes)
 router.use("/class", courseClassRoutes)
 router.use("/achievment", achievmentRoutes)
 router.use("/bulletin", bulletinRoutes)
+router.use("/office", officeRoutes)
+router.use("/acceptedUniversity", acceptedUniversity)
+router.use("/banner", bannerRoutes)
 
 module.exports = router

@@ -4,14 +4,14 @@ const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
     addTestimonial: tryCatch(async (req, res) => {
-        const { name, acceptedSchool, graduatedFrom, description, video } = req.body;
+        const { name, acceptedSchool, graduatedFrom, description, video, grade } = req.body;
         const data = await Testimonial.create({
             data: {
                 name: name,
-                pictureId: req.fileId,
                 picture: req.fileName,
                 acceptedSchool: acceptedSchool,
                 graduatedFrom: graduatedFrom,
+                grade: grade || null,
                 video: video || null,
                 description: description
             }

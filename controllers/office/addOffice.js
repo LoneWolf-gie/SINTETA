@@ -8,7 +8,6 @@ module.exports = {
         const data = await Office.create({
             data: {
                 name,
-                pictureId: req.fileId,
                 picture: req.fileName,
                 about,
                 description: description || null,
@@ -29,7 +28,7 @@ module.exports = {
             })
 
             if (data) {
-                throw new AppError("Invalid data", "Course already exists", 403);
+                throw new AppError("Invalid data", "Office already exists", 403);
             }
 
             next()

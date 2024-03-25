@@ -27,7 +27,6 @@ CREATE TABLE `profiles` (
     `gender` ENUM('male', 'female') NOT NULL,
     `address` VARCHAR(191) NULL,
     `phone` VARCHAR(191) NULL,
-    `pictureId` VARCHAR(191) NULL,
     `profile_picture` VARCHAR(191) NULL,
     `description` VARCHAR(191) NULL,
     `status` VARCHAR(191) NULL,
@@ -45,7 +44,6 @@ CREATE TABLE `courses` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NULL,
     `price` INTEGER NOT NULL,
     `discount` INTEGER NULL,
@@ -59,7 +57,6 @@ CREATE TABLE `courses` (
     `updated_at` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `courses_uuid_key`(`uuid`),
-    UNIQUE INDEX `courses_name_key`(`name`),
     FULLTEXT INDEX `courses_name_idx`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -69,6 +66,7 @@ CREATE TABLE `programs` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NOT NULL,
     `subName` VARCHAR(191) NOT NULL,
     `about` VARCHAR(191) NOT NULL,
     `description` TEXT NULL,
@@ -84,9 +82,10 @@ CREATE TABLE `promos` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NOT NULL,
     `about` VARCHAR(191) NOT NULL,
     `description` TEXT NOT NULL,
-    `expired` DATETIME(3) NOT NULL,
+    `expired` VARCHAR(191) NOT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
@@ -99,29 +98,29 @@ CREATE TABLE `course_class` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NULL,
     `grade` ENUM('sd', 'smp', 'sma', 'advance') NOT NULL,
     `about` TEXT NULL,
     `description` TEXT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `course_class_uuid_key`(`uuid`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `achievments` (
+CREATE TABLE `achievements` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NULL,
     `description` TEXT NULL,
     `course_class_id` INTEGER NOT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `achievments_uuid_key`(`uuid`),
+    UNIQUE INDEX `achievements_uuid_key`(`uuid`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -142,7 +141,6 @@ CREATE TABLE `offices` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NULL,
     `about` VARCHAR(191) NULL,
     `description` VARCHAR(191) NULL,
@@ -161,7 +159,6 @@ CREATE TABLE `testimonials` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NULL,
     `accepted_school` VARCHAR(191) NOT NULL,
     `graduated_from` VARCHAR(191) NOT NULL,
@@ -172,7 +169,6 @@ CREATE TABLE `testimonials` (
     `updated_at` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `testimonials_uuid_key`(`uuid`),
-    UNIQUE INDEX `testimonials_name_key`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -181,6 +177,7 @@ CREATE TABLE `alumnaes` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NOT NULL,
     `accepted_school` VARCHAR(191) NOT NULL,
     `description` TEXT NOT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -195,7 +192,6 @@ CREATE TABLE `accepted_university` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NOT NULL,
     `graduatedFrom` VARCHAR(191) NOT NULL,
     `acceptedSchool` VARCHAR(191) NOT NULL,
@@ -211,7 +207,6 @@ CREATE TABLE `bulletins` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NULL,
     `description` LONGTEXT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -226,8 +221,7 @@ CREATE TABLE `facilities` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
-    `pictrue` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NOT NULL,
     `about` VARCHAR(191) NOT NULL,
     `description` TEXT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -242,8 +236,7 @@ CREATE TABLE `banners` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `pictureId` VARCHAR(191) NOT NULL,
-    `pictrue` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NOT NULL,
     `tag` ENUM('home', 'class', 'graduate', 'facility', 'promoStudy', 'aboutus') NOT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
@@ -256,4 +249,4 @@ CREATE TABLE `banners` (
 ALTER TABLE `profiles` ADD CONSTRAINT `profiles_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `achievments` ADD CONSTRAINT `achievments_course_class_id_fkey` FOREIGN KEY (`course_class_id`) REFERENCES `course_class`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `achievements` ADD CONSTRAINT `achievements_course_class_id_fkey` FOREIGN KEY (`course_class_id`) REFERENCES `course_class`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

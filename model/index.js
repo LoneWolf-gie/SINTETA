@@ -11,6 +11,12 @@ module.exports = {
     Tag: prisma.tag,
     Bulletin: prisma.bulletin,
     Office: prisma.office,
+    Banner: prisma.banner,
+    Facility: prisma.facility,
+    Program: prisma.program,
+    Promo: prisma.promo,
+    Testimonial: prisma.testimonial,
+    AcceptedUniversity: prisma.acceptedUniversity,
 
     prisma: prisma,
     

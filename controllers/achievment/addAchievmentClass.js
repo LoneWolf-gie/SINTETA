@@ -9,7 +9,6 @@ module.exports = {
         const data = await Achievment.createMany({
             data: {
                 name,
-                pictureId: req.fileId,
                 picture: req.fileName,
                 description,
                 courseClassId: parseInt(courseClassId)

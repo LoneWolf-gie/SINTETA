@@ -9,7 +9,6 @@ module.exports = {
         const data = await Bulletin.create({
             data: {
                 name: name,
-                pictureId: req.fileId,
                 picture: req.fileName,
                 description: description,
             }

@@ -19,7 +19,7 @@ router.post('/add-Testimonial', checkToken, authPage(['admin', 'superadmin']), v
 router.get('/', getAllTestimonial)
 router.post('/filter', filterTestimonial)
 router.post('/pagination', paginationTestimonial)
-router.put('/update-testimonial/:uuid', checkToken, authPage(['admin', 'superadmin']), validateRequest(testimonialValidation), checkTestimonial, unlinkImage, uploadImage, updateTestimonial)
+router.put('/update-testimonial/:uuid', checkToken, authPage(['admin', 'superadmin']), validateRequest(testimonialValidation), checkTestimonial, uploadImage, unlinkImage, updateTestimonial)
 router.delete('/delete-testimonial/:uuid', checkToken, authPage(['admin', 'superadmin']), checkTestimonial, unlinkImage, deleteTestimonial)
 
 module.exports = router;

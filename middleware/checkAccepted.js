@@ -1,10 +1,9 @@
-const { Achievment } = require("../model")
+const { AcceptedUniversity } = require("../model")
 
-const checkAchievment = async (req, res, next) => {
+const checkAccepted = async (req, res, next) => {
     try {
-
-
-        const data = await Achievment.findUnique({
+        
+        const data = await AcceptedUniversity.findUnique({
             where: { uuid: req.params.uuid }
         })
 
@@ -17,4 +16,4 @@ const checkAchievment = async (req, res, next) => {
 
 }
 
-module.exports = checkAchievment;
+module.exports = checkAccepted;

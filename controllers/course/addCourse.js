@@ -10,14 +10,13 @@ module.exports = {
         const data = await Course.create({
             data: {
                 name: name,
-                pictureId: req.fileId,
                 picture: req.fileName,
                 price: Number(price),
                 discount: Number(discount) || 0,
                 totalPrice: Number(totalPrice) || (Number(price) - Number(discount)),
                 about: about || null,
                 description: description || null,
-                expired: new Date(expired) || null,
+                expired: expired || null,
                 grade: grade || null,
                 tag: tags || null
             }

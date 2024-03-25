@@ -57,7 +57,6 @@ model Profile {
   gender           Gender
   address          String?
   phone            String?
-  pictureId        String?
   profilePicture   String?  @map("profile_picture")
   description      String?
   status           String?
@@ -72,15 +71,14 @@ model Profile {
 model Course {
   id          Int       @id @default(autoincrement())
   uuid        String    @unique @default(uuid())
-  name        String    @unique
-  pictureId   String
+  name        String    
   picture     String?
   price       Int
   discount    Int?
   totalPrice  Int?      @map("total_price")
   about       String?
   description String?   @db.Text
-  expired     DateTime?
+  expired     String?
   grade       Grade
   tag         String?
   createdAt   DateTime  @default(now()) @map("crated_at")
@@ -94,6 +92,7 @@ model Program {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
   name        String
+  picture     String
   subName     String
   about       String
   description String?  @db.Text
@@ -107,9 +106,10 @@ model Promo {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
   name        String
+  picture     String
   about       String
   description String   @db.Text
-  expired     DateTime
+  expired     String
   createdAt   DateTime @default(now()) @map("crated_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
@@ -120,7 +120,6 @@ model CourseClass {
   id          Int           @id @default(autoincrement())
   uuid        String        @unique @default(uuid())
   name        String
-  pictureId   String
   picture     String?
   grade       Grade
   about       String?       @db.Text
@@ -136,7 +135,6 @@ model Achievement {
   id            Int         @id @default(autoincrement())
   uuid          String      @unique @default(uuid())
   name          String
-  pictureId     String
   picture       String?
   description   String?     @db.Text
   courseClassId Int         @map("course_class_id")
@@ -161,7 +159,6 @@ model Office {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
   name        String
-  pictureId   String
   picture     String?
   about       String?
   description String?
@@ -177,8 +174,7 @@ model Office {
 model Testimonial {
   id             Int      @id @default(autoincrement())
   uuid           String   @unique @default(uuid())
-  name           String   @unique
-  pictureId      String
+  name           String   
   picture        String?
   acceptedSchool String   @map("accepted_school")
   graduatedFrom  String   @map("graduated_from")
@@ -195,7 +191,6 @@ model Alumnae {
   id            Int      @id @default(autoincrement())
   uuid          String   @unique @default(uuid())
   name          String
-  pictureId     String
   picture       String
   currentSchool String   @map("accepted_school")
   description   String   @db.Text
@@ -209,7 +204,6 @@ model AcceptedUniversity {
   id             Int      @id @default(autoincrement())
   uuid           String   @unique @default(uuid())
   name           String
-  pictureId      String
   picture        String
   graduatedFrom  String
   acceptedSchool String
@@ -223,7 +217,6 @@ model Bulletin {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
   name        String
-  pictureId   String
   picture     String?
   description String?  @db.LongText
   createdAt   DateTime @default(now()) @map("created_at")
@@ -236,7 +229,6 @@ model Facility {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())
   name        String
-  pictureId   String
   picture     String
   about       String
   description String?  @db.Text
@@ -261,7 +253,6 @@ model Banner {
   id        Int       @id @default(autoincrement())
   uuid      String    @unique @default(uuid())
   name      String
-  pictureId String
   picture   String
   tag       TagBanner
   createdAt DateTime  @default(now()) @map("crated_at")

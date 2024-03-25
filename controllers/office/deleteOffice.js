@@ -5,7 +5,7 @@ const { tryCatch } = require("../../utils/tryCatch");
 module.exports = {
     deleteOffice: tryCatch(async(req, res) => {
         const data = await Office.delete({
-            where: {uuid: req.body.uuid}
+            where: {uuid: req.params.uuid}
         })
 
         if(!data) throw new AppError("Not found", "Office not found", 404)

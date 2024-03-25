@@ -48,6 +48,40 @@ const banner = {
         }
     },
 
+    "/banner/filter?tag={value}": {
+        post: {
+            summary: "Filter Banner",
+            description: "tag for banner only allow home, class, graduate, facility, promoStudy, and aboutus",
+            tags: ["Banner"],
+            responses: {
+                200: {
+                    description: "Successful operation",
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    data: {
+                                        type: "object",
+                                        properties: {
+                                            id: { type: "integer" },
+                                            uuid: { type: "string" },
+                                            name: { type: "string" },
+                                            picture: { type: "string" },
+                                            tag: { type: "string" },
+                                            createdAt: { type: "string", format: "date-time" },
+                                            updatedAt: { type: "string", format: "date-time" },
+                                        }
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        }
+    },
+
 
     "/banner/": {
         get: {
