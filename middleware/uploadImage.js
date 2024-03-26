@@ -28,7 +28,7 @@ const uploadImage = (req, res, next) => {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
 
-        const fileName = `${makeid(8)}${image.name}`;
+        const fileName = `${makeid(8)}${fileExtension}`;
         const filePath = path.join(uploadDir, fileName);
 
         image.mv(filePath, (error) => {

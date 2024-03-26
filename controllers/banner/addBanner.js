@@ -13,7 +13,7 @@ module.exports = {
             }
         })
 
-        if (!data) throw new AppError("Failed", "Failed to add banner")
+        if (!data) throw new AppError("Failed", "Failed to add banner", 400)
 
         return res.status(201).send("Success");
     }),

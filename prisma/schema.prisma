@@ -71,14 +71,14 @@ model Profile {
 model Course {
   id          Int       @id @default(autoincrement())
   uuid        String    @unique @default(uuid())
-  name        String    
+  name        String
   picture     String?
   price       Int
   discount    Int?
   totalPrice  Int?      @map("total_price")
   about       String?
   description String?   @db.Text
-  expired     String?
+  expired     DateTime?
   grade       Grade
   tag         String?
   createdAt   DateTime  @default(now()) @map("crated_at")
@@ -109,7 +109,7 @@ model Promo {
   picture     String
   about       String
   description String   @db.Text
-  expired     String
+  expired     DateTime
   createdAt   DateTime @default(now()) @map("crated_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
@@ -174,7 +174,7 @@ model Office {
 model Testimonial {
   id             Int      @id @default(autoincrement())
   uuid           String   @unique @default(uuid())
-  name           String   
+  name           String
   picture        String?
   acceptedSchool String   @map("accepted_school")
   graduatedFrom  String   @map("graduated_from")
@@ -193,7 +193,8 @@ model Alumnae {
   name          String
   picture       String
   currentSchool String   @map("accepted_school")
-  description   String   @db.Text
+  about         String @db.Text
+  description   String?  @db.Text
   createdAt     DateTime @default(now()) @map("crated_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
 

@@ -8,6 +8,10 @@ const bulletinRoutes = require('./bulletin/bulletin')
 const officeRoutes = require('./office/office')
 const acceptedUniversity = require('./acceptedUniversity/accepted')
 const bannerRoutes = require('./banner/banner')
+const promoRoutes = require('./promo/promo')
+const programRoutes = require('./program/program')
+const facilityRoutes = require('./facility/facility')
+const alumnaeRoutes = require('./alumnae/alumnae')
 
 const router = express.Router();
 
@@ -20,5 +24,9 @@ router.use("/bulletin", bulletinRoutes)
 router.use("/office", officeRoutes)
 router.use("/acceptedUniversity", acceptedUniversity)
 router.use("/banner", bannerRoutes)
+router.use("/promo", promoRoutes)
+router.use("/program", programRoutes)
+router.use("/facility", facilityRoutes)
+router.use("/alumnae", alumnaeRoutes)
 
 module.exports = router

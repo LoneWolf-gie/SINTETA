@@ -24,7 +24,9 @@ const alumnae = {
                             type: "object",
                             properties: {
                                 name: { type: "string" },
-                                tag: { type: "string" },
+                                currentSchool: { type: "string" },
+                                about: { type: "string" },
+                                description: { type: "string" },
                             },
                         },
                     },
@@ -53,7 +55,7 @@ const alumnae = {
         get: {
             summary: "Get Alumnae",
             description: "This endpoint is used for get all alumnae. Every users can use this endpoint",
-            tags: ["alumnae"],
+            tags: ["Alumnae"],
             responses: {
                 200: {
                     description: "Successful operation",
@@ -69,6 +71,7 @@ const alumnae = {
                                             uuid: { type: "string" },
                                             name: { type: "string" },
                                             picture: { type: "string" },
+                                            currentSchool: { type: "string" },
                                             about: { type: "string" },
                                             description: { type: "string" },
                                             createdAt: { type: "string", format: "date-time" },
@@ -89,7 +92,7 @@ const alumnae = {
         put: {
             summary: "Update alumnae",
             description: "This endpoint is used for update alumnae by admin. The requirements are same with add-alumnae",
-            tags: ["alumnae"],
+            tags: ["Alumnae"],
             parameters: [
                 {
                     name: "image",
@@ -110,7 +113,7 @@ const alumnae = {
                             type: "object",
                             properties: {
                                 name: { type: "string" },
-                                picture: { type: "string" },
+                                currentSchool: { type: "string" },
                                 about: { type: "string" },
                                 description: { type: "string" },
                             },
@@ -140,7 +143,7 @@ const alumnae = {
         delete: {
             summary: "Delete alumnae",
             description: "This endpoint is used for Delete alumnae by admin. The requirements are same with add-alumnae",
-            tags: ["alumnae"],
+            tags: ["Alumnae"],
             responses: {
                 200: {
                     description: "Successful operation",

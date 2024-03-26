@@ -1,6 +1,7 @@
 const { Bulletin } = require("../../model");
 const AppError = require("../../utils/error");
 const { tryCatch } = require("../../utils/tryCatch");
+const moment = require('moment-timezone')
 
 module.exports = {
     getBulletinById: tryCatch(async (req, res) => {
@@ -9,6 +10,8 @@ module.exports = {
         })
 
         if (!data) throw new AppError("Not found", "Bulletin not found", 404)
+        data.createdAt = moment(data.createdAt).tz('Asia/Jakarta').format();
+        data.updatedAt = moment(data.updatedAt).tz('Asia/Jakarta').format();
 
         return res.status(200).json({ data })
     })

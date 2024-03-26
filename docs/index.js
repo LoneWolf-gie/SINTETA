@@ -10,6 +10,7 @@ const promo = require('./promo/promoDoc')
 const facility = require('./facility/facilityDoc')
 const acceptedUniversity = require('./acceptedUniversity/acceptedUniversityDoc')
 const banner = require('./banner/bannerDoc')
+const alumnae = require('./alumnae/alumnaeDoc')
 
 const options = {
     definition: {
@@ -28,6 +29,7 @@ const options = {
         paths: {  
             ...acceptedUniversity,
             ...achievement,
+            ...alumnae,
             ...User, 
             ...banner, 
             ...bulletin,

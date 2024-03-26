@@ -14,7 +14,7 @@ module.exports = {
             }
         })
 
-        if (!data) throw new AppError("Failed", "Failed to add who accepted by university")
+        if (!data) throw new AppError("Failed", "Failed to add who accepted by university", 400)
 
         return res.status(201).send("Success");
     }),

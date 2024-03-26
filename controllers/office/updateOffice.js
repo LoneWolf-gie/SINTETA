@@ -17,7 +17,7 @@ module.exports = {
             }
         })
 
-        if(!data) throw AppError("Not found", "Office not found", 404)
+        if(!data || data.length == 0) throw new AppError("Failed", "Unsuccessful Update", 400);
 
         return res.status(200).send("Update successfully")
     })

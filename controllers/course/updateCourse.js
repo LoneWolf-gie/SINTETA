@@ -5,7 +5,12 @@ const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
     updateCourse: tryCatch(async (req, res) => {
-        const { name, price, discount, totalPrice, about, description, expired, grade, tags } = req.body;
+        const { name, price, discount, totalPrice, about, description, grade, tags } = req.body;
+        const utcExpired = new Date(req.body.expired).toUTCString()
+        let expired = null;
+        if(utcExpired !== "Invalid Date") {
+            expired = new Date(utcExpired)
+        }
         const data = await Course.update({
             where: { uuid: req.params.uuid },
             data: {
@@ -16,7 +21,7 @@ module.exports = {
                 totalPrice: (totalPrice) || Number(price - discount),
                 about: about || null,
                 description: description || null,
-                expired: expired || null,
+                expired: expired,
                 grade: grade || null,
                 tag: tags || null
             }

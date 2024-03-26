@@ -7,7 +7,7 @@ exports.courseValidation = joi.object({
     totalPrice: joi.number(),
     about: joi.string().required(),
     description: joi.string(),
-    expired: joi.date(),
+    expired: joi.date().iso(),
     grade: joi.string().valid('sd', 'smp', 'sma'),
     tag: joi.string(),
 })

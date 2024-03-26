@@ -50,7 +50,7 @@ CREATE TABLE `courses` (
     `total_price` INTEGER NULL,
     `about` VARCHAR(191) NULL,
     `description` TEXT NULL,
-    `expired` VARCHAR(191) NULL,
+    `expired` DATETIME(3) NULL,
     `grade` ENUM('sd', 'smp', 'sma', 'advance') NOT NULL,
     `tag` VARCHAR(191) NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -85,7 +85,7 @@ CREATE TABLE `promos` (
     `picture` VARCHAR(191) NOT NULL,
     `about` VARCHAR(191) NOT NULL,
     `description` TEXT NOT NULL,
-    `expired` VARCHAR(191) NOT NULL,
+    `expired` DATETIME(3) NOT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
@@ -179,7 +179,8 @@ CREATE TABLE `alumnaes` (
     `name` VARCHAR(191) NOT NULL,
     `picture` VARCHAR(191) NOT NULL,
     `accepted_school` VARCHAR(191) NOT NULL,
-    `description` TEXT NOT NULL,
+    `about` TEXT NOT NULL,
+    `description` TEXT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
