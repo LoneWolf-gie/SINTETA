@@ -14,6 +14,7 @@ CREATE TABLE `users` (
     UNIQUE INDEX `users_uuid_key`(`uuid`),
     UNIQUE INDEX `users_username_key`(`username`),
     UNIQUE INDEX `users_email_key`(`email`),
+    UNIQUE INDEX `users_verification_token_key`(`verification_token`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -193,9 +194,11 @@ CREATE TABLE `accepted_university` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `picture` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NULL,
     `graduatedFrom` VARCHAR(191) NOT NULL,
     `acceptedSchool` VARCHAR(191) NOT NULL,
+    `major` VARCHAR(191) NOT NULL,
+    `yearAccepted` VARCHAR(191) NOT NULL,
     `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 

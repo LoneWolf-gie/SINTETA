@@ -9,7 +9,8 @@ const helmet = require('helmet');
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const options = require('./docs');
-const rateLimiterMiddleware = require('./middleware/rateLimitMemory');
+const rateLimiterMiddleware = require('./middleware/rateLimitIp');
+const rateLimiterRequest = require('./middleware/rateLimitRequest');
 
 
 const httpServer = express();
@@ -19,6 +20,9 @@ httpServer.use(express.json());
 
 httpServer.use(helmet())
 httpServer.use(rateLimiterMiddleware)
+httpServer.use(rateLimiterRequest)
+
+httpServer.set('trust proxy', 1)
 
 httpServer.use(cors())
 // httpServer.use(cors({

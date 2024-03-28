@@ -26,7 +26,7 @@ function fakeCourse() {
         totalPrice: price - discount,
         about: faker.lorem.words(50),
         description: faker.lorem.words(5),
-        expired: faker.date.future().toString(),
+        expired: faker.date.future(),
         grade: faker.helpers.arrayElement([Grade.sd, Grade.smp, Grade.sma]),
     };
 }

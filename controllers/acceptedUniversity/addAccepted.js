@@ -4,13 +4,15 @@ const { tryCatch } = require("../../utils/tryCatch");
 
 module.exports = {
     addAccepted: tryCatch(async (req, res) => {
-        const { name, graduatedFrom, acceptedSchool } = req.body;
+        const { name, graduatedFrom, acceptedSchool, major, yearAccepted } = req.body;
         const data = await AcceptedUniversity.create({
             data: {
                 name, 
                 picture: req.fileName, 
                 graduatedFrom, 
-                acceptedSchool
+                acceptedSchool,
+                major,
+                yearAccepted
             }
         })
 
