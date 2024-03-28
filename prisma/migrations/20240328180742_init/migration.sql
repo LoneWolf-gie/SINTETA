@@ -207,6 +207,23 @@ CREATE TABLE `accepted_university` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `conratulations` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `picture` VARCHAR(191) NULL,
+    `graduatedFrom` VARCHAR(191) NOT NULL,
+    `acceptedSchool` VARCHAR(191) NOT NULL,
+    `major` VARCHAR(191) NOT NULL,
+    `yearAccepted` VARCHAR(191) NOT NULL,
+    `crated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
+
+    UNIQUE INDEX `conratulations_uuid_key`(`uuid`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `bulletins` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,

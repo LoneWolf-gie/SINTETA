@@ -18,6 +18,7 @@ module.exports = {
     Testimonial: prisma.testimonial,
     AcceptedUniversity: prisma.acceptedUniversity,
     Alumnae: prisma.alumnae,
+    Congratulation: prisma.congratulations,
 
     prisma: prisma,
     

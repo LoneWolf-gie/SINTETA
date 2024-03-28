@@ -11,6 +11,7 @@ const facility = require('./facility/facilityDoc')
 const acceptedUniversity = require('./acceptedUniversity/acceptedUniversityDoc')
 const banner = require('./banner/bannerDoc')
 const alumnae = require('./alumnae/alumnaeDoc')
+const congratulation = require('./congratulation/congratulationDoc')
 
 const options = {
     definition: {
@@ -23,7 +24,7 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:3000",
+                url: "https://api.bimbel-sinteta.id",
             },
         ],
         paths: {  
@@ -34,6 +35,7 @@ const options = {
             ...banner, 
             ...bulletin,
             ...Class,
+            ...congratulation,
             ...course,
             ...facility,
             ...office,
@@ -42,7 +44,7 @@ const options = {
             ...testimonial,
         }
     },
-    apis: ["./routes/*.js"],
+    apis: ["./routes/index.js"],
 };
 
 module.exports = options;

@@ -216,6 +216,21 @@ model AcceptedUniversity {
   @@map("accepted_university")
 }
 
+model Congratulations {
+  id             Int      @id @default(autoincrement())
+  uuid           String   @unique @default(uuid())
+  name           String
+  picture        String?
+  graduatedFrom  String
+  acceptedSchool String
+  major          String
+  yearAccepted   String
+  createdAt      DateTime @default(now()) @map("crated_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@map("conratulations")
+}
+
 model Bulletin {
   id          Int      @id @default(autoincrement())
   uuid        String   @unique @default(uuid())

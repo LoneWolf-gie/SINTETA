@@ -1,5 +1,5 @@
 const emailView = (verificationCode, email, name) => {
-return `
+  return `
 <!DOCTYPE html>
 <html>
 
@@ -132,10 +132,6 @@ return `
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin-top: 40px;">
           <tr style="">
             <td align="center" valign="top" style=" padding: 36px 24px 20px; background-color: #1a82e2;">
-              <a href="#" style="display: inline-block;">
-                <img src="https://api.bimbel-sinteta.id/images/Logo Bimbel 1.png" alt="Logo" border="0" width="100"
-                  style="display: block; width: 100px; max-width: 100px; min-width: 150px;">
-              </a>
             </td>
           </tr>
         </table>
@@ -228,7 +224,7 @@ return `
                 the password reset page. This will allow you to reset your password and regain access to your account.
               </p>
 
-              <p>If you did not initiate this password reset request, please disregard this email. Your account
+              <p>If you did not initiate this password reset request, please disregard this email ${email} . Your account
                 security is important to us, and we recommend reviewing your account activity for any unauthorized
                 actions..</p>
               </p>
